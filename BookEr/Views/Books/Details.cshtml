@@ -1,0 +1,47 @@
+﻿@model BookEr.Persistence.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Html.DisplayFor(model => model.Title)</h1>
+<h2>@Html.DisplayFor(model => model.Author)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Library id</th>
+            <th>Available</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Volumes)
+        {
+            <tr>
+                <td>
+                    @if (item.Book.Image != null)
+                    {
+                        <img src="@Url.Action("DisplayImage", "Books", new { id = item.Book.Id })" class="book" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LibraryId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAvailable)
+                </td>
+                <td>
+                    <form>
+                        <button asp-controller="Volumes" asp-action="Details" asp-route-id="@item.LibraryId" class="button">Borrows</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form>
+    <button asp-action="Index" class="button">Continue browsing</button>
+</form>
+

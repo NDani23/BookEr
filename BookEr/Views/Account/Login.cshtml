@@ -1,0 +1,49 @@
+﻿@using BookEr.Web.Models
+
+@model LoginViewModel
+
+<form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewBag.ReturnUrl">
+
+    <table>
+        <tr>
+            <td colspan="2">
+                <div asp-validation-summary="ModelOnly" class="failureNotification"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="contentHead">
+                    Login data:
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="120">
+                User name:
+            </td>
+            <td class="failureNotification">
+                <input asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td width="120">
+                Password:
+            </td>
+            <td class="failureNotification">
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" height="50">
+                <input type="submit" value="Login" class="button" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

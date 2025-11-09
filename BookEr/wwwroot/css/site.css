@@ -1,0 +1,80 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Custom styles
+-------------------------------------------------- */
+
+
+img.book {
+    width: 110px;
+    height: 140px;
+}
+
+.button {
+
+    background-color: #ADD8E6;
+    border-radius: 6px;
+    border-width: 1px;
+}
+
+.link {
+    color:darkslategrey;
+    text-decoration: none;
+}
+
+.contentHead {
+    font-size:larger;
+    text-decoration: double;
+    margin-top:20px;
+}
+
+.headerRight {
+    display:block;
+    float:right;
+}
+
+.userForm {
+    border-radius:8px;
+    background-color:whitesmoke;
+}
+
+#SortByPopularity {
+    display: block;
+    float: right;
+}
+
+#LoginDiv
+{
+    display:block;
+    float: right;
+    text-align:right;
+}
+
+
+td {
+    vertical-align: middle;
+}
+
+th {
+    font-size: larger;
+}
+
+table {
+    margin-top: 50px;
+}

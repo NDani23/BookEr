@@ -1,0 +1,104 @@
+﻿@using BookEr.Web.Models
+
+@model RegisterViewModel
+
+<form asp-controller="Account" asp-action="Register" class="userForm">
+
+    <table>
+        <tr>
+            <td colspan="3">
+                <div class="failureNotification">@Html.ValidationSummary(true, "Registration was unsuccessfull!")</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="contentHead">
+                    Personal data's':
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="120">
+                Name:
+            </td>
+            <td class="failureNotification" colspan="2">
+                <input asp-for="VisitorName" size="60" />
+                <span asp-validation-for="VisitorName"></span>
+            </td>
+
+        </tr>
+        <tr>
+            <td width="120">
+                Address:
+            </td>
+            <td class="failureNotification" colspan="2">
+                <input asp-for="VisitorAddress" size="40" />
+                <span asp-validation-for="VisitorAddress"></span>
+            </td>
+        </tr>
+        <tr>
+            <td width="120">
+                E-mail:
+            </td>
+            <td class="failureNotification" colspan="2">
+                <input asp-for="VisitorEmail" size="40" />
+                <span asp-validation-for="VisitorEmail"></span>
+            </td>
+
+        </tr>
+        <tr>
+            <td width="120">
+                Phone number:
+            </td>
+            <td class="failureNotification" colspan="2">
+                <input asp-for="VisitorPhoneNumber" size="40" />
+                <span asp-validation-for="VisitorPhoneNumber"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="contentHead">
+                    Login data's':
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="150" colspan="2">
+                User Name:
+            </td>
+            <td class="failureNotification">
+                <input asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td width="150" colspan="2">
+                Password:
+            </td>
+            <td class="failureNotification">
+                <input asp-for="UserPassword" />
+                <span asp-validation-for="UserPassword"></span>
+            </td>
+        </tr>
+        <tr>
+            <td width="150" colspan="2">
+                Repeated Password:
+            </td>
+            <td class="failureNotification">
+                <input asp-for="UserConfirmPassword" />
+                <span asp-validation-for="UserConfirmPassword"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" height="70">
+                <br /><br /><br />
+                <input type="submit" value="Registration" class="button" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+@section Scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+}

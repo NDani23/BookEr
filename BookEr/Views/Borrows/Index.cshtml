@@ -1,0 +1,114 @@
+﻿@using BookEr.Web.Models;
+
+@model BorrowViewModel
+
+<h1>Register a new Borrow</h1>
+
+<div class="contentHead">@Model.Volume!.Book.Title</div>
+<div class="contentBody">
+    <table width="600">
+        <tr>
+            <td>
+                <strong>Author:</strong> @Model.Volume.Book.Author
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>ISBN:</strong> @Model.Volume.Book.ISBN
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Library id: </strong> @Model.Volume.LibraryId
+            </td>
+        </tr>
+    </table>
+    <form asp-controller="Borrows" asp-action="Index" asp-route-libraryId="@Model.Volume.LibraryId" class="userForm">
+
+        <table>
+            <tr>
+                <td colspan="2" valign="middle">
+
+                    <div asp-validation-summary="ModelOnly" class="failureNotification"></div>
+
+                    <div class="contentHead">
+                        Personal data's':
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="120">
+                    Name:
+                </td>
+                <td class="failureNotification">
+                    <input asp-for="VisitorName" size="60" />
+                 
+                    <span asp-validation-for="VisitorName"></span>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Address:
+                </td>
+                <td class="failureNotification">
+                    <input asp-for="VisitorAddress" size="60" />
+                    <span asp-validation-for="VisitorAddress"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E-mail:
+                </td>
+                <td class="failureNotification">
+                    <input asp-for="VisitorEmail" size="60" />
+                    <span asp-validation-for="VisitorEmail"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Phone Number:
+                </td>
+                <td class="failureNotification">
+                    <input asp-for="VisitorPhoneNumber" size="60" />
+                    <span asp-validation-for="VisitorPhoneNumber"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" valign="middle">
+                    <div class="contentHead">
+                        Borrow detail's':
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   Start Date:
+                </td>
+                <td class="failureNotification">
+                    <input asp-for="BorrowStartDate" />
+                    <span asp-validation-for="BorrowStartDate"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    End Date:
+                </td>
+                <td class="failureNotification">
+                    <input asp-for="BorrowEndDate" />
+                    <span asp-validation-for="BorrowEndDate"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    <input type="submit" value="Borrow" class="button" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+@section Scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+}

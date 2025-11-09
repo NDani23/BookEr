@@ -1,0 +1,103 @@
+﻿@using BookEr.Persistence
+@using BookEr.Web.Models
+
+@model PagedList<Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+<h1>BookEr</h1>
+
+<div id="SortByPopularity">
+    <form method="post">
+        <input type="submit" value="Most populars"
+            asp-action="Index" 
+            asp-route-sortOrder="@ViewData["PopSortParam"]"
+            asp-route-lastSearchString="@ViewBag.lastSearchString"
+            class="button">
+    </form>
+</div>
+
+<form method="post" class="searchBar">
+    <input type="text" name="searchString" value="@ViewBag.lastSearchString">
+    <input type="submit" value="Search" asp-action="Index" asp-route-hasSearchString="true" class="button">
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Image")
+            </th>
+            <th>
+                <a asp-action="Index" 
+                    asp-route-sortOrder="@ViewData["SortParam"]"
+                    asp-route-lastSearchString="@ViewBag.lastSearchString"
+                    class="link">
+                        Title
+                </a>
+                    @{
+                        if ((String?)ViewData["SortParamString"] == "asc")
+                        {
+                            @Html.Raw("&#9660")
+                        }
+                        else
+                        {
+                            @Html.Raw("&#9650")
+                        }
+                    }
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("Year")
+            </th>
+            <th>
+                @Html.DisplayName("ISBN")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               @if (item.Image != null)
+               {
+                    <img src="@Url.Action("DisplayImage", "Books", new { id = item.Id })" class="book" />
+               }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                <form>
+                    <button asp-action="Details" asp-route-id="@item.Id" class="button">Show copies</button>
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @prevDisabled">Previous</a>
+    <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex+1)" class="btn btn-default @nextDisabled">Next</a>
+
+</div>

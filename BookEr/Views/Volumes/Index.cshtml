@@ -1,0 +1,37 @@
+﻿@model IEnumerable<BookEr.Persistence.Volume>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@Html.DisplayFor(model => model.First().Book.Title)</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Library id</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Book.Title)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.LibraryId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LibraryId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LibraryId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LibraryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

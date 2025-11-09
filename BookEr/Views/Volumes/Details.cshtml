@@ -1,0 +1,58 @@
+﻿@using BookEr.Persistence
+
+@model IEnumerable<Borrow>
+
+<h1>@ViewBag.Title</h1>
+
+<p>
+    <form>
+        <button asp-controller="Borrows" asp-action="Index" asp-route-id="@ViewBag.LibraryId" class="button">Register a new borrow</button>
+    </form>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                Active
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+                        String presentStartDate = item.StartDay.ToString("yyyy-MM-dd");
+                    }
+                    @Html.DisplayName(presentStartDate)
+                </td>
+                <td>
+                    @{
+                        String presentEndDate = item.EndDay.ToString("yyyy-MM-dd");
+                    }
+                    @Html.DisplayName(presentEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Visitor.ApplicationUser.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form>
+    <button asp-action="Index" asp-controller="Books" class="button">Continue browsing</button>
+</form>

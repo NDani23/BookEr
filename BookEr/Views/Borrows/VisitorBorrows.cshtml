@@ -1,0 +1,69 @@
+﻿@using BookEr.Persistence
+
+@model IEnumerable<Borrow>
+
+<h1>@ViewBag.Title</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Image")
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Libray id
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Active
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.Volume.Book.Image != null)
+                    {
+                        <img src="@Url.Action("DisplayImage", "Books", new { id = item.Volume.BookId })" class="book" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Volume.Book.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Volume.LibraryId)
+                </td>
+                <td>
+                    @{
+                        String presentStartDate = item.StartDay.ToString("yyyy-MM-dd");
+                    }
+                    @Html.DisplayName(presentStartDate)
+                </td>
+                <td>
+                    @{
+                        String presentEndDate = item.EndDay.ToString("yyyy-MM-dd");
+                    }
+                    @Html.DisplayName(presentEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form>
+    <button asp-action="Index" asp-controller="Books" class="button">Continue browsing</button>
+</form>
